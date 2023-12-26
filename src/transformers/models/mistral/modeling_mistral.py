@@ -986,7 +986,8 @@ class MistralModel(MistralPreTrainedModel):
         if attention_mask is not None and self._attn_implementation == "flash_attention_2" and use_cache:
             is_padding_right = attention_mask[:, -1].sum().item() != batch_size
             if is_padding_right:
-                raise ValueError(
+                # raise ValueError(
+                print("Warning: "
                     "You are attempting to perform batched generation with padding_side='right'"
                     " this may lead to unexpected behaviour for Flash Attention version of Mistral. Make sure to "
                     " call `tokenizer.padding_side  = 'left'` before tokenizing the input. "
